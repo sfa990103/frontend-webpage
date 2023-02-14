@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contact HKiersVPN</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+	<link href="../../img/favicon.png" rel="icon">
+  <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">	
+	<link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/56555089c8.js" crossorigin="anonymous"></script>
+	
+	<link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+	
+	<link href="../../css/style.css" rel="stylesheet">
+	
+	<script src="../../lib/jquery/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			$(window).resize(function() {
+  				var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			});
+			$("#platform").html("<h2>"+getOS()+"</h2>");
+			if(getOS() == "Mac OS"){
+				$("#latest").html("<h4>Latest Version Beta 1.0</h4>");
+				$("#btn-download").html("<font size='6px'><i class='fab fa-apple'></i></font>  &nbsp;&nbsp;Get it on App Store");
+				$("#android").hide();
+			}
+			if(getOS() == "iOS"){
+				$("#latest").html("<h4>Latest Version Beta 1.0</h4>");
+				$("#btn-download").html("<font size='6px'><i class='fab fa-apple'></i></font>  &nbsp;&nbsp;Get it on App Store");
+				$("#android").hide();
+			}
+			if(getOS() == "Android"){
+				$("#plat").hide();
+			}
+			function getOS() {
+  						var userAgent = window.navigator.userAgent,
+      					platform = window.navigator.platform,
+						macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+						windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+						iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+						os = null;
+				if (macosPlatforms.indexOf(platform) !== -1) {
+					os = 'Mac OS';
+				} else if (iosPlatforms.indexOf(platform) !== -1) {
+					os = 'iOS'	;
+				} else if (windowsPlatforms.indexOf(platform) !== -1) {
+					os = 'Windows';
+				} else if (/Android/.test(userAgent)) {
+					os = 'Android';
+				} else if (!os && /Linux/.test(platform)) {
+					os = 'Linux';
+				}
+					return os;
+				}
+		});
+	</script>
+</head>
+
+<body>
+	<!-----------------------------------------------reponsive nav---------------------------------------------->
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+  <a class="navbar-brand" href="#"><img src="../../img/logo.png" width="50px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../../">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../features/">Features</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../shop/">Shop</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../contact/">Contact</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="">Download<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../../img/flag/hk.svg" width="20px"> Language
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh"><img src="../../img/flag/hk.svg" width="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../account/"><i class="far fa-user"></i> Account</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<!-----------------------------------------------nav section------------------------------------------------>
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+  <a class="navbar-brand" href="#"><img src="../../img/logo.png" width="50px"></a>
+	</nav>
+	<nav class="fixed-top navbar navbar-expand-lg nav">
+		<div class="row justify-content-center nav collapse navbar-collapse">
+			<div class="col-lg-5 nav-left">
+				<ul class="nav-menu">
+					<li class="nav-item"><a href="../../index.html#why">About</a></li>
+					<li class="nav-item"><a href="../features/">Features</a></li>
+					<li class="nav-item"><a href="../shop/">Shop</a></li>
+			</div>
+			<div class="col-lg-auto nav-logo"><input type="button" class="btn-logo" onclick="location.href='../../';"></div>
+				<div class="col-lg-5 nav-right">
+					<li><a href="../contact/">Contact</a></li>
+					<li class="nav-item active">Downlaod</li>
+					<li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         	<img src="../../img/flag/hk.svg" width="20px" height="20px"> 
+        </a>
+        <div class="dropdown-menu dropmen" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px" height="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh/"><img src="../../img/flag/hk.svg" width="20px" height="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+					<li class="nav-item"><a href="../account"><i class="far fa-user"></i></a></li>
+					</ul>
+			</div>
+	</div>
+		</nav>
+	<!--fake top (fixed body stick on top problem)------------------------------------------------------------------->
+	<nav class="navbar-expand-lg nav">
+		<div class="row justify-content-center"><div class="col-lg-5 nav-left"></div>
+		<div class = "col-lg-auto logo-center"></div>
+			<div class="col-lg-5 nav-right"></div>
+		</div>
+	</nav>
+	<!-----------------------------------------------------hero section-------------------------------------------------->
+	<div id="download" class="container-fluid wow fadeIn">
+		<div class="container-fluid body-content"> 
+			<br>
+			<br>
+			<br>
+			<br>
+			<div class="container">
+				<div class="container platform" id="plat">
+					<h1>Downlaod HKiersVPN</h1>
+					<hr>
+						<div class="col-lg-12" id="platform">
+							<h2>Error!</h2>
+					</div>
+					<br>
+					<div class="col-lg-12" id="latest">
+							<h4>Error!</h4>
+					</div>
+					<br>
+					<div class="row justify-content-center">
+						<div class="col-lg-4"></div>
+						 <div class="col-lg-4 btn-download"  id="btn-download">Download</div>
+						<div class="col-lg-4"></div>
+						<div class="col-lg-3"></div>
+						<div class="col-lg-5"  id="other">Other Platforms : <a><i class="fab fa-android"></i> Android</a>&nbsp;&nbsp;&nbsp;<a><i class="fab fa-windows"></i> Windows</a></div>
+						<div class="col-lg-3"></div>
+					</div>
+				</div>
+				<div class="container platform" id="android">
+					<h1><i class="fab fa-android"></i>&nbsp;&nbsp;Use HKiersVPN on Android</h1>
+					<hr>
+					<h4>Sorry ! We don't have android apps yet until android 11 release.<br>But you still can use HKiersVPN by the following method.</h4>
+					<br>
+					j
+				</div>
+			</div>
+			<br><br><br><br><br><br><br>
+			</div>
+		</div>
+	
+	<footer class="page-footer">
+		<div class="container-fluid footer">
+			<br><br>
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="row">
+					<div class="col-lg-6 platform">
+						<i class="fab fa-apple plat"></i>  <i class="fab fa-android plat"></i>  <i class="fab fa-windows plat"></i>
+						</div>
+					<div class="col-lg-6 social">
+						<a><i class="fab fa-instagram"></i></a> 
+						<a><i class="fab fa-telegram-plane"></i></a>
+						<a><i class="fab fa-facebook"></i> </a>
+						<a><i class="fab fa-twitter"></i> </a>
+						<a><i class="fas fa-donate"></i></a>
+					</div>
+						</div>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Features</h5></b></li>
+						<li>VPN</li><li>Netflix VPN</li>
+						<li>Streaming VPN</li>
+						<li>Fast VPN</li>
+						<li>Secure VPN</li></ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Platforms</h5></b></li>
+						<li>VPN for iOS</li>
+						<li>VPN for Mac</li>
+						<li>VPN for Android</li>
+						<li>VPN for Windows</li>
+						<li>VPN for Router</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Legal</h5></b></li>
+						<li>Privacy</li>
+						<li>Term of Use</li>
+						<li><p></p></li>
+						<li><b><h5>Account</h5></b></li>
+						<li>Manage your account</li>
+						<li>Extend your account</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+					<li><b><h5>HKiersVPN</h5></b></li>
+					<li>About</li>
+					<li>Contact HKiersVPN</li>
+					<li>Join our team</li>
+					<li>Donate to us</li>	
+					</ul>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-8 copyright">
+					<br>
+					<hr>
+					<div class="row">
+					<div class="col-lg-6">
+					Copyright &copy; 2020 HKiersVPN .  All rights reserved
+						</div>
+					<div class="col-lg-6 right">Keeps you safe to find the objective truth undetectably.</div>
+						</div>
+				</div>
+			</div>
+			<br>
+		</div>
+	</footer>
+</body>
+</html>

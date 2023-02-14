@@ -1,0 +1,440 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Checkout HKiersVPN</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+	<link href="../../img/favicon.png" rel="icon">
+  <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">	
+	<link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://www.paypal.com/sdk/js?client-id=AZdRdeGf4S82wNMM65yzWPlr7qlB47Pmh0EWYeT0h2ah4c9JaNW9hwdpBFIPSzXLgEaWCG9fj0nfDuTc&vault=true" data-sdk-integration-source="button-factory"></script>
+	<script src="https://kit.fontawesome.com/56555089c8.js" crossorigin="anonymous"></script>
+	
+	<link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+	
+	<link href="../../css/style.css" rel="stylesheet">
+	
+	<script src="../../lib/jquery/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			$(window).resize(function() {
+  				var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			});
+				checksessiontime();
+  				var t = sessionStorage.getItem("hkiersvpn-total");
+				var item = sessionStorage.getItem("hkiersvpn");
+				var s = sessionStorage.getItem("hkiersvpn-s");
+				var time = 5*60;
+				var flagx = 0;
+				var flagy = 0;
+			    var flagi = 0;
+				var flagj = 0;
+			$("#price").text("HK$"+t);
+			$("#item").text("HKiersVPN"+" "+item+"("+s+")")
+			$("#emailin").focusout(function() { 
+            var email = $("#emailin").val();
+					if(!IsEmail(email) || email==" "){
+						flagx = 0;
+						$("#emailau").html("<font color='red'>&#9888;   Please enter a valid email address.</font>");
+						alertinput("#email");
+					}
+					if(IsEmail(email)){
+						flagx = 1;
+						$("#emailau").html("<br>");
+						dealertinput("#email");
+					}
+        }); 
+				$("#email").click(function(){
+					dealertinput("#email");
+					$("#emailin").focus();
+				});
+			$("#acin").focusout(function() { 
+            var ac = $("#acin").val();
+					if(!checkcase("#acin")){
+						flagy = 0;
+						$("#acau").html("<font color='red'>&#9888;   Must include 8-16 uppercase & lowercase & special charaters.</font>");
+						alertinput("#ac");
+					}
+					if(checkcase("#acin")){
+						flagy = 1;
+						$("#acau").html("<br>");
+						dealertinput("#ac");
+					}
+        }); 
+				$("#ac").click(function(){
+					dealertinput("#ac");
+					$("#acin").focus();
+				});
+			$("#pwin").focusout(function() { 
+            var ac = $("#pwin").val();
+					if(!checkcase("#pwin")){
+						flagi = 0;
+						$("#pwau").html("<font color='red'>&#9888;   Must include 8-16 uppercase & lowercase & special charaters.</font>");
+						alertinput("#pw");
+					}
+					if(checkcase("#pwin")){
+						flagi = 1;
+						$("#pwau").html("<br>");
+						dealertinput("#pw");
+					}
+				if($("#repwin").val() != $("#pwin".val()) && flagj == 1){
+						flagj =0;
+						$("#repwau").html("<font color='red'>&#9888;   Passwords entered do not match</font>");
+						alertinput("#repw");
+					}
+					if($("#repwin").val() == $("#pwin").val()){
+						flagj =0;
+						$("#repwau").html("<br>");
+						dealertinput("#repw");
+					}
+        }); 
+				$("#pw").click(function(){
+					dealertinput("#pw");
+					$("#pwin").focus();
+				});
+			$("#repwin").focusout(function() { 
+            var ac = $("#repwin").val();
+					if($("#repwin").val() != $("#pwin").val()){
+						flagj =0;
+						$("#repwau").html("<font color='red'>&#9888;   Passwords entered do not match</font>");
+						alertinput("#repw");
+					}
+					if($("#repwin").val() == $("#pwin").val()){
+						flagj =1;
+						$("#repwau").html("<br>");
+						dealertinput("#repw");
+					}
+				paypalbutton(getitem());
+        }); 
+				$("#repw").click(function(){
+					dealertinput("#repw");
+					$("#repwin").focus();
+				});
+				function getitem(){
+					var sm = 'P-0BV85019AU217182LL5DXZMA';
+				var sy = 'P-4RL22303J9521853XL5DX2RQ';
+				var bm = 'P-5G4856712S525831SL5DX3KI';
+				var by = 'P-9WV662861D487861ML5DX3ZY';
+				var pm = 'P-8NV97353BS809200JL5DX42A';
+				var py = 'P-63J53868EA837602GL5DX7AI';
+					if(item=="starter" && s=="Monthly"){
+						return sm;
+					}
+					if(item=="basic" && s=="Monthly"){
+						return bm;
+					}
+					if(item=="pro" && s=="Monthly"){
+						return pm;
+					}
+					if(item=="starter" && s=="Yearly"){
+						return sy;
+					}
+					if(item=="basic" && s=="Yearly"){
+						return by;
+					}
+					if(item=="pro" && s=="Yearly"){
+						return py;
+					}
+				}
+				function paypalbutton(itemx){
+					$("#paypal-button-container").html("<br>");
+					paypal.Buttons({
+      				style: {
+						shape: 'rect',
+						color: 'gold',
+          				layout: 'horizontal',
+          				label: 'subscribe',
+          
+					},
+					createSubscription: function(data, actions) {
+        				return actions.subscription.create({
+          				'plan_id': itemx
+        				});
+					},
+      				onApprove: function(data, actions) {
+						alert(data.subscriptionID);
+					}
+					}).render('#paypal-button-container');
+				}
+			    function checksessiontime(){
+					if(sessionStorage.getItem("hkiersvpn-total")==null || sessionStorage.getItem("hkiersvpn")==null){
+						window.location.replace("session_expired");
+					}
+			setInterval(function() {
+					time--;
+					if(time==0){
+						window.location.replace("session_expired");
+					}
+			}, 1000);
+				}
+				function checkcase(v){
+					var upperCase= new RegExp('[A-Z]');
+					var lowerCase= new RegExp('[a-z]');
+					var numbers = new RegExp('[0-9]');
+					var special = new RegExp("^[a-zA-Z0-9]+$");
+
+					if($(v).val().match(upperCase) && $(v).val().match(lowerCase) &&   $(v).val().match(numbers) && !$(v).val().match(special) && $(v).val().length > 7 && $(v).val().length < 17)  
+						{
+    						return true;
+						}
+					else
+					{
+    						return false;
+					}
+				}
+				function valid(d,value){
+					$.post("hkiersvpn.com/serverside/create/valid.php",
+						   {
+      							data: d,
+      							value: value
+							},
+    				function(data,status){
+								alert("Data: " + data + "\nStatus: " + status);
+    						});
+				}
+				function alertinput(div){
+					$(div).css({"background-color":"rgba(255,55,95,0.4)","border":"2px solid rgba(255,55,95,1.00)"});
+					$(div+"name").css("color","rgba(255,55,95,1.00)");
+				}
+				function dealertinput(div){
+					$(div).css({"background-color":"black","border":"1px solid rgb(58, 58, 60,1.00)","caret-color":"white","color":"white"});
+					$(div+"name").css("color","#86868b");
+				}
+				function IsEmail(email) {
+  					var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+					if(!regex.test(email)) {
+    					return false;
+  					}else{
+						return true;
+  							}
+				}
+});
+	</script>
+</head>
+
+<body>
+	<!-----------------------------------------------reponsive nav---------------------------------------------->
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+  <a class="navbar-brand" href="#"><img src="../../img/logo.png" width="50px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../../">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../features/">Features</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="">Shop<span class="sr-only">(current)</span></a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../contact/">Contact</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../download/">Download</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../../img/flag/hk.svg" width="20px"> Language
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh"><img src="../../img/flag/hk.svg" width="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../account/"><i class="far fa-user"></i> Account</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<!-----------------------------------------------nav section------------------------------------------------>
+	<nav class="fixed-top navbar navbar-expand-lg nav">
+		<div class="row justify-content-center nav collapse navbar-collapse">
+			<div class="col-lg-5 nav-left">
+				<ul class="nav-menu">
+					<li class="nav-item"><a href="../../index.html#why">About</a></li>
+					<li class="nav-item"><a href="../features/">Features</a></li>
+					<li class="nav-item active">Shop</li>
+			</div>
+			<div class="col-lg-auto nav-logo"><input type="button" class="btn-logo" onclick="location.href='../../';"></div>
+				<div class="col-lg-5 nav-right">
+					<li><a href="../contact/">Contact</a></li>
+					<li class="nav-item"><a href="">Downlaod</a></li>
+					<li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         	<img src="../../img/flag/hk.svg" width="20px" height="20px"> 
+        </a>
+        <div class="dropdown-menu dropmen" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px" height="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh/"><img src="../../img/flag/hk.svg" width="20px" height="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+					<li class="nav-item"><a href="../account"><i class="far fa-user"></i></a></li>
+					</ul>
+			</div>
+	</div>
+		</nav>
+	<!--fake top (fixed body stick on top problem)------------------------------------------------------------------->
+	<nav class="navbar-expand-lg nav">
+		<div class="row justify-content-center"><div class="col-lg-5 nav-left"></div>
+		<div class = "col-lg-auto logo-center"></div>
+			<div class="col-lg-5 nav-right"></div>
+		</div>
+	</nav>
+	<!-----------------------------------------------------hero section-------------------------------------------------->
+	<div id="checkout" class="container-fluid wow fadeIn">
+		<div class="container-fluid body-content"> 
+			<br>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-lg-9">
+					<h2>Checkout</h2>
+					<hr>
+					<div class="row">
+						<div class="col-lg-6 create">
+							<h5>Create a new account</h5>
+							<br>
+						  <div class="col-lg-10 wrapper" id="email"><div class="name" id="emailname">Email</div><input type="email" class="input" id="emailin"></div>
+							<div class="col-lg-10 aution" id="emailau"><br></div>
+							<div class="col-lg-10 wrapper" id="ac"><div class="name" id="acname">Account Name</div><input type="text" class="input" id="acin"></div>
+							<div class="col-lg-10 aution" id="acau"><br></div>
+							<div class="col-lg-10 wrapper" id="pw"><div class="name" id="pwname">Password</div><input type="password" class="input" id="pwin"></div>
+							<div class="col-lg-10 aution" id="pwau"><br></div>
+							<div class="col-lg-10 wrapper" id="repw"><div class="name" id="repwname">Password Confirm</div><input type="password" class="input" id="repwin"></div>
+							<div class="col-lg-10 aution" id="repwau"><br></div>
+							<div class="col-lg-10" id="paypal-button-container"></div>
+						</div>
+						<div class="col-lg-6">
+							<div class="row justify-content-end">
+								<div class="col-lg-9 order">
+							<div class="row justify-content-center">
+								<div class="col-lg-9 order-handle">
+									<h5>Your Order Deatail</h5>
+									<hr>
+									<div class="row item">
+									 <div class="col-lg-6">Your Item   </div><div class="col-lg-6" id="item">HkiersVPN Pro </div>
+										</div>
+									<hr>
+									<div class="row">
+									 <div class="col-lg-6" id="total">Your Total  </div><div class="col-lg-6" id="price"></div>
+										</div>
+								</div>
+							</div>
+						</div>
+						</div>
+						</div>
+					</div>
+					<hr>
+				</div>
+			</div>
+			
+			<br><br><br><br>
+				</div>
+				</div>
+	
+	<footer class="page-footer">
+		<div class="container-fluid footer">
+			<br><br>
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="row">
+					<div class="col-lg-6 platform">
+						<i class="fab fa-apple plat"></i>  <i class="fab fa-android plat"></i>  <i class="fab fa-windows plat"></i>
+						</div>
+					<div class="col-lg-6 social">
+						<a><i class="fab fa-instagram"></i></a> 
+						<a><i class="fab fa-telegram-plane"></i></a>
+						<a><i class="fab fa-facebook"></i> </a>
+						<a><i class="fab fa-twitter"></i> </a>
+						<a><i class="fas fa-donate"></i></a>
+					</div>
+						</div>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Features</h5></b></li>
+						<li>VPN</li><li>Netflix VPN</li>
+						<li>Streaming VPN</li>
+						<li>Fast VPN</li>
+						<li>Secure VPN</li></ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Platforms</h5></b></li>
+						<li>VPN for iOS</li>
+						<li>VPN for Mac</li>
+						<li>VPN for Android</li>
+						<li>VPN for Windows</li>
+						<li>VPN for Router</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Legal</h5></b></li>
+						<li>Privacy</li>
+						<li>Term of Use</li>
+						<li><p></p></li>
+						<li><b><h5>Account</h5></b></li>
+						<li>Manage your account</li>
+						<li>Extend your account</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+					<li><b><h5>HKiersVPN</h5></b></li>
+					<li>About</li>
+					<li>Contact HKiersVPN</li>
+					<li>Join our team</li>
+					<li>Donate to us</li>	
+					</ul>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-8 copyright">
+					<br>
+					<hr>
+					<div class="row">
+					<div class="col-lg-6">
+					Copyright &copy; 2020 HKiersVPN .  All rights reserved
+						</div>
+					<div class="col-lg-6 right">Keeps you safe to find the objective truth undetectably.</div>
+						</div>
+				</div>
+			</div>
+			<br>
+		</div>
+	</footer>
+</body>
+</html>

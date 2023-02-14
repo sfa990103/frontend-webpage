@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Settings-Account HKiersVPN</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+	<link href="../../../img/favicon.png" rel="icon">
+  <link href="../../../img/apple-touch-icon.png" rel="apple-touch-icon">	
+	<link href="../../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/56555089c8.js" crossorigin="anonymous"></script>
+	
+	<link href="../../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../../lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../../lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+	
+	<link href="../../../css/style.css" rel="stylesheet">
+	
+	<script src="../../../lib/jquery/jquery.min.js"></script>
+<script src="../../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var ac = sessionStorage.getItem("hkiersvpn-ac");
+			var pw = sessionStorage.getItem("hkiersvpn-pw");
+			$.post("../valid/valid.php", {
+				ac : ac,
+				pw : pw
+			}, function(data){
+    			if(data!="sucess"){
+					location.replace("../");
+				}
+  			});
+			$.post("server/acdetail.php", {
+				ac : ac		
+			}, function(data){
+				alert(data);
+				var obj = JSON.parse(data);
+				$("#acin").text(ac);
+				$("#cpin").text(obj.plan);
+				$("#epdin").text(obj.expired_date);
+				$("#cdin").text(obj.num+" / "+obj.max_device);
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<!-----------------------------------------------reponsive nav---------------------------------------------->
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+	<div class="container-fluid justify-content-center">
+	<div class="col-11 col-lg-11">
+  <a class="navbar-brand" href="#">&lt; Settings</a>
+	</div>
+	</div>	
+	</nav>
+	<nav class="navbar navbar-expand-lg navbar-light navres">
+	<div class="container-fluid justify-content-center">
+	<div class="col-11">
+  <a class="navbar-brand" href="#">&lt; Settings</a>
+	</div>
+	</div>		
+	</nav>
+	<div id="acdetail" class="container-fluid wow fadeIn">
+		<div class="container-fluid body-content">
+			<br>
+			<h1>Account Details</h1>
+			<div class="row justify-content-center">
+				<div class="col-lg-9 col-md-9 col-10"><hr></div>
+			</div>
+			<div class="container-fluid" id="details">
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="ac"><div class="name" id="acname">Account Name</div><div class="input" id="acin"> Error</div></div>
+							<div class="col-lg-10 col-10 aution" id="acau"><br></div>
+				</div>
+			</div>	
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="cp"><div class="name" id="cpname">Current Plan</div><div class="input" id="cpin"> Error</div></div>
+							<div class="col-lg-10 col-10 aution" id="cpau"><br></div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="epd"><div class="name" id="epdname">Expire Date</div><div class="input" id="epdin"> Error</div></div>
+							<div class="col-lg-10 col-10 aution" id="epdau"><br></div>
+				</div>
+			</div>
+				<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="cd"><div class="name" id="cdname">Linked Devices</div><div class="input" id="cdin"> Error</div></div>
+							<div class="col-lg-10 col-10 aution" id="cdau"><br></div>
+				</div>
+			</div>
+			</div>
+		</div>	
+			<br><br><br><br><br><br><br><br><br><br>
+			</div>
+	<footer class="page-footer">
+		<div class="container-fluid footer">
+			<br><br>
+			<div class="row justify-content-center">
+				<div class="col-12 col-xs-4 col-lg-8">
+					<div class="row">
+					<div class="col-5 col-xs-3 col-lg-6 platform">
+						<i class="fab fa-apple plat"></i>  <i class="fab fa-android plat"></i>  <i class="fab fa-windows plat"></i>
+						</div>
+					<div class="col-5 col-xs-3 col-lg-6 social">
+						<a><i class="fab fa-instagram"></i></a> 
+						<a><i class="fab fa-telegram-plane"></i></a>
+						<a><i class="fab fa-facebook"></i> </a>
+						<a><i class="fab fa-twitter"></i> </a>
+						<a><i class="fas fa-donate"></i></a>
+					</div>
+						</div>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Features</h5></b></li>
+						<li>VPN</li><li>Netflix VPN</li>
+						<li>Streaming VPN</li>
+						<li>Fast VPN</li>
+						<li>Secure VPN</li></ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Platforms</h5></b></li>
+						<li>VPN for iOS</li>
+						<li>VPN for Mac</li>
+						<li>VPN for Android</li>
+						<li>VPN for Windows</li>
+						<li>VPN for Router</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Legal</h5></b></li>
+						<li>Privacy</li>
+						<li>Term of Use</li>
+						<li><p></p></li>
+						<li><b><h5>Account</h5></b></li>
+						<li>Manage your account</li>
+						<li>Extend your account</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+					<li><b><h5>HKiersVPN</h5></b></li>
+					<li>About</li>
+					<li>Contact HKiersVPN</li>
+					<li>Join our team</li>
+					<li>Donate to us</li>	
+					</ul>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-8 copyright">
+					<br>
+					<hr>
+					<div class="row">
+					<div class="col-lg-6">
+					Copyright &copy; 2020 HKiersVPN .  All rights reserved
+						</div>
+					<div class="col-lg-6 right">Keeps you safe to find the objective truth undetectably.</div>
+						</div>
+				</div>
+			</div>
+			<br>
+		</div>
+	</footer>
+	<nav class="navbar navbar-expand-lg fixed-bottom ac-bottom">
+	<div class="container-fluid justify-content-center">
+		<div class="col-12">
+		<div class="row">
+		<div class="col-4 bottomd active"><i class="fas fa-globe"></i><br>Countries</div>
+		<div class="col-4 bottomd"><a href="#"><i class="fas fa-wifi"></i><br>Quick Connect</a></div>
+		<div class="col-4 bottomd"><a href="#"><i class="fas fa-cog"></i><br>Settings</a></div>
+		</div>	
+		</div>	
+	</div>
+	</nav>
+	<nav class="navbar navbar-expand-lg ac-bottom">
+	<div class="container-fluid justify-content-center">
+		<div class="col-12">
+		<div class="row">
+			<div class="col-4 bottomd"><i class="fas fa-globe"></i><br>Countries</div>
+			<div class="col-4 bottomd"><i class="fas fa-wifi"></i><br>Quick Connect</div>
+			<div class="col-4 bottomd"><i class="fas fa-cog"></i><br>Settings</div>
+		</div>	
+		</div>	
+	</div>
+	</nav>
+</body>
+</html>

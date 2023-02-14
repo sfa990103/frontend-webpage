@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contact HKiersVPN</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+	<link href="../../img/favicon.png" rel="icon">
+  <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">	
+	<link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/56555089c8.js" crossorigin="anonymous"></script>
+	
+	<link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+	
+	<link href="../../css/style.css" rel="stylesheet">
+	
+	<script src="../../lib/jquery/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			$(window).resize(function() {
+  				var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			});
+			var flagx,flagy,flagz=0;
+  			$("#titlein").focusout(function(){
+				var title = $("#titlein").val();
+				if(title.trim().length == 0){
+					flagx=0;
+					$("#titleau").html("<font color='red'>&#9888;   You must enter somthing in title.</font>");
+					alertinput("#title");
+				}
+				else{
+					flagx=1;
+					$("#titleau").html("<br>");
+					dealertinput("#title");
+				}
+			});
+			$("#title").click(function(){
+					dealertinput("#title");
+					$("#titlein").focus();
+				});
+			$("#messagein").focusout(function(){
+				var message = $("#messagein").val();
+				if(message.trim().length == 0){
+					flagy=0;
+					$("#messageau").html("<font color='red'>&#9888;   You must enter your enquries in message.</font>");
+					alertinput("#message");
+				}
+				else{
+					flagy=1;
+					$("#messageau").html("<br>");
+					dealertinput("#message");
+				}
+			});
+			$("#message").click(function(){
+					dealertinput("#message");
+					$("#messagein").focus();
+				});
+			$("#emailin").focusout(function(){
+				var email = $("#emailin").val();
+				if(!IsEmail(email)){
+					flagz=0;
+					$("#emailau").html("<font color='red'>&#9888;   Please enter a valid email for us to contact back.</font>");
+					alertinput("#email");
+				}
+				else{
+					flagz=1;
+					$("#emailau").html("<br>");
+					dealertinput("#email");
+				}
+			});
+			$("#email").click(function(){
+					dealertinput("#email");
+					$("#emailin").focus();
+				});
+			$("#btn-send").click(function(){
+				if(flagx==1 && flagy==1 && flagz==1){
+					$.post("../serverside/email/email.php", 
+						   { title: $("#titlein").val(), 
+								message: $("#messagein").val(),
+						   		email: $("#emailin").val()},
+						   	function(data){
+     							alert("Data Loaded: " + data);
+						});
+				}
+			});
+			function alertinput(div){
+					$(div).css({"background-color":"rgba(255,55,95,0.4)","border":"2px solid rgba(255,55,95,1.00)"});
+					$(div+"name").css("color","rgba(255,55,95,1.00)");
+				}
+				function dealertinput(div){
+					$(div).css({"background-color":"black","border":"1px solid rgb(58, 58, 60,1.00)","caret-color":"white","color":"white"});
+					$(div+"name").css("color","#86868b");
+				}
+			function IsEmail(email) {
+  					var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+					if(!regex.test(email)) {
+    					return false;
+  					}else{
+						return true;
+  							}
+				}
+		});
+	</script>
+</head>
+
+<body>
+	<!-----------------------------------------------reponsive nav---------------------------------------------->
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+  <a class="navbar-brand" href="#"><img src="../../img/logo.png" width="50px"></a>
+	</nav>
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+  <a class="navbar-brand" href="#"><img src="../../img/logo.png" width="50px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../../">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../features/">Features</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../shop/">Shop<span class="sr-only">(current)</span></a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../contact/">Contact</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../download/">Download</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../../img/flag/hk.svg" width="20px"> Language
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh"><img src="../../img/flag/hk.svg" width="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../account/"><i class="far fa-user"></i> Account</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<!-----------------------------------------------nav section------------------------------------------------>
+	<nav class="fixed-top navbar navbar-expand-lg nav">
+		<div class="row justify-content-center nav collapse navbar-collapse">
+			<div class="col-lg-5 nav-left">
+				<ul class="nav-menu">
+					<li class="nav-item"><a href="../../index.html#why">About</a></li>
+					<li class="nav-item"><a href="../features/">Features</a></li>
+					<li class="nav-item active">Shop</li>
+			</div>
+			<div class="col-lg-auto nav-logo"><input type="button" class="btn-logo" onclick="location.href='../../';"></div>
+				<div class="col-lg-5 nav-right">
+					<li><a href="../contact/">Contact</a></li>
+					<li class="nav-item"><a href="">Downlaod</a></li>
+					<li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         	<img src="../../img/flag/hk.svg" width="20px" height="20px"> 
+        </a>
+        <div class="dropdown-menu dropmen" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px" height="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh/"><img src="../../img/flag/hk.svg" width="20px" height="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+					<li class="nav-item"><a href="../account"><i class="far fa-user"></i></a></li>
+					</ul>
+			</div>
+	</div>
+		</nav>
+	<!--fake top (fixed body stick on top problem)------------------------------------------------------------------->
+	<nav class="navbar-expand-lg nav">
+		<div class="row justify-content-center"><div class="col-lg-5 nav-left"></div>
+		<div class = "col-lg-auto logo-center"></div>
+			<div class="col-lg-5 nav-right"></div>
+		</div>
+	</nav>
+	<!-----------------------------------------------------hero section-------------------------------------------------->
+	<div id="contact" class="container-fluid wow fadeIn">
+		<div class="container-fluid body-content"> 
+			<br>
+			<br>
+			<br>
+			<br>
+			<h1>Email Form</h1>
+			<div class="container">
+				<div class="container social">
+					<hr>
+						
+					<br><br>
+						<div class="container-fluid">
+							<div class="row justify-content-center">
+							<div class="col-lg-7 wrapper" id="title"><div class="name" id="titlename">Title</div><input type="text" class="input" id="titlein"></div>
+							<div class="col-lg-7 aution" id="titleau"><br></div>
+							<div class="col-lg-7 wrapper" id="message"><div class="name" id="messagename">Message</div><textarea class="input" id="messagein" rows="5"></textarea></div>
+								<div class="col-lg-7 aution" id="messageau"><br></div>
+								<div class="col-lg-7 wrapper" id="email"><div class="name" id="emailname">Your Email</div><input type="text" class="input" id="emailin"></div>
+							<div class="col-lg-7 aution" id="emailau"><br></div>
+								<div class="col-lg-7 btn-send"  id="btn-send">Send</div> 
+								
+								</div>
+						</div>
+				</div>
+			</div>
+			<br><br><br><br><br><br><br>
+			</div>
+		</div>
+	
+	<footer class="page-footer">
+		<div class="container-fluid footer">
+			<br><br>
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="row">
+					<div class="col-lg-6 platform">
+						<i class="fab fa-apple plat"></i>  <i class="fab fa-android plat"></i>  <i class="fab fa-windows plat"></i>
+						</div>
+					<div class="col-lg-6 social">
+						<a><i class="fab fa-instagram"></i></a> 
+						<a><i class="fab fa-telegram-plane"></i></a>
+						<a><i class="fab fa-facebook"></i> </a>
+						<a><i class="fab fa-twitter"></i> </a>
+						<a><i class="fas fa-donate"></i></a>
+					</div>
+						</div>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Features</h5></b></li>
+						<li>VPN</li><li>Netflix VPN</li>
+						<li>Streaming VPN</li>
+						<li>Fast VPN</li>
+						<li>Secure VPN</li></ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Platforms</h5></b></li>
+						<li>VPN for iOS</li>
+						<li>VPN for Mac</li>
+						<li>VPN for Android</li>
+						<li>VPN for Windows</li>
+						<li>VPN for Router</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Legal</h5></b></li>
+						<li>Privacy</li>
+						<li>Term of Use</li>
+						<li><p></p></li>
+						<li><b><h5>Account</h5></b></li>
+						<li>Manage your account</li>
+						<li>Extend your account</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+					<li><b><h5>HKiersVPN</h5></b></li>
+					<li>About</li>
+					<li>Contact HKiersVPN</li>
+					<li>Join our team</li>
+					<li>Donate to us</li>	
+					</ul>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-8 copyright">
+					<br>
+					<hr>
+					<div class="row">
+					<div class="col-lg-6">
+					Copyright &copy; 2020 HKiersVPN .  All rights reserved
+						</div>
+					<div class="col-lg-6 right">Keeps you safe to find the objective truth undetectably.</div>
+						</div>
+				</div>
+			</div>
+			<br>
+		</div>
+	</footer>
+</body>
+</html>

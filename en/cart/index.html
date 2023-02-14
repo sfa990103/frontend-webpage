@@ -1,0 +1,370 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cart HKiersVPN</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+	<link href="../../img/favicon.png" rel="icon">
+  <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">	
+	<link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/56555089c8.js" crossorigin="anonymous"></script>
+	
+	<link href="../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+	
+	<link href="../../css/style.css" rel="stylesheet">
+	
+	<script src="../../lib/jquery/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			$(window).resize(function() {
+  				var width = $(window).width();
+  				if (width < 800){
+    				$(".nav").hide();
+					$(".navres").show();
+  				}
+				else if (width>799){
+					$(".navres").hide();
+					$(".nav").show();
+				}
+			});
+  				var plan = sessionStorage.getItem("hkiersvpn");
+				var t = "m";
+				var m = 30;
+			 	var y = 250;
+				checkplan();
+			$("#starter").click(function(){
+				if(plan!="starter"){
+					deactive(plan);
+					plan = "starter";
+					changeactive(plan);
+					$("#m").text("HK$30");
+					$("#y").text("HK$250");
+					$("#dis").text("30%off");
+					m = 30;
+					y = 250;
+					updatetotal();
+				}
+			});
+			$("#basic").click(function(){
+				if(plan!="basic"){
+					deactive(plan);
+					plan = "basic";
+					changeactive(plan);
+					$("#m").text("HK$40");
+					$("#y").text("HK$324");
+					$("#dis").text("33%off");
+					m = 40;
+					y = 324;
+					updatetotal();
+				}
+			});
+			$("#pro").click(function(){
+				if(plan!="pro"){
+					deactive(plan);
+					plan = "pro";
+					changeactive(plan);
+					$("#m").text("HK$50");
+					$("#y").text("HK$430");
+					$("#dis").text("30%off");
+					m = 50;
+					y = 430;
+					updatetotal();
+				}
+			});
+			$("#monthly").click(function(){
+				if(m != 30 || m != 40 || m != 50 ){
+					deactive("yearly");
+					changeactive("monthly");
+					t = "m";
+					updatetotal();
+				}
+			});
+			$("#yearly").click(function(){
+				if(m != 250 || m != 324 || m != 430 ){
+					deactive("monthly");
+					changeactive("yearly");
+					t = "y";
+					updatetotal();
+				}
+			});
+			$("#btn-contin").click(function(){
+				setdata();
+				window.location.href = "../checkout/";
+			});
+			function setdata(){
+				if(t=="m"){
+					sessionStorage.setItem("hkiersvpn-total", m.toString());
+					sessionStorage.setItem("hkiersvpn", plan);
+					sessionStorage.setItem("hkiersvpn-s", "Monthly");
+				}
+				if(t=="y"){
+					sessionStorage.setItem("hkiersvpn-total", y.toString());
+					sessionStorage.setItem("hkiersvpn", plan);
+					sessionStorage.setItem("hkiersvpn-s", "Yearly")
+				}
+			}
+			function updatetotal(){
+				if(t=="m"){
+					$("#total").text("HK$"+m.toString());
+				}
+				if(t=="y"){
+					$("#total").text("HK$"+y.toString());
+				}
+			}
+			function checkplan(){
+				if(plan=="starter"){
+					changeactive(plan);
+					m = 30;
+					y = 250
+					$("#m").text("HK$30");
+					$("#y").text("HK$250");
+					$("#dis").text("30%off");
+					changeactive("monthly");
+					updatetotal()
+				}
+				if(plan=="basic"){
+					changeactive(plan);
+					m = 40;
+					y = 324;
+					$("#m").text("HK$40");
+					$("#y").text("HK$324");
+					$("#dis").text("33%off");
+					changeactive("monthly");
+					updatetotal()
+				}
+				if(plan=="pro"){
+					changeactive(plan);
+					m = 50;
+					y = 430;
+					$("#m").text("HK$50");
+					$("#y").text("HK$430");
+					$("#dis").text("30%off");
+					changeactive("monthly");
+					updatetotal()
+				}
+			}
+			function deactive(id){
+				$("#"+id).unbind('mouseenter mouseleave');
+				$("#"+id).css({"border": "1px solid rgba(199,199,204,0.4)","box-shadow": "0 0 0px 0px rgba(199,199,204,0.4)"});
+				$("#"+id).hover(function(){$("#"+id).css({"border": "1px solid rgba(199,199,204,1)","cursor": "pointer"});
+									  });
+			}
+			function changeactive(id){
+				$("#"+id).unbind('mouseenter mouseleave');
+				$("#"+id).css({"box-shadow": "0 0 3px 3px rgba(255,0,4,0.5)","border": "2px solid rgba(255,0,4,1.00)" });
+			$("#"+id).hover(function(){$("#"+id).css({"cursor": "pointer","box-shadow": "0 0 3px 3px rgba(255,0,4,0.5)","border": "2px solid rgba(255,0,4,1.00)"});
+									  });
+			}
+});
+	</script>
+</head>
+
+<body>
+		<!-----------------------------------------------reponsive nav---------------------------------------------->
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+  <a class="navbar-brand" href="#"><img src="../../img/logo.png" width="50px"></a>
+	</nav>
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+  <a class="navbar-brand" href="#"><img src="../img/logo.png" width="50px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../../">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../features/">Features</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="">Shop<span class="sr-only">(current)</span></a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../contact/">Contact</a>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../download/">Download</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="../../img/flag/hk.svg" width="20px"> Language
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh"><img src="../../img/flag/hk.svg" width="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+		<li class="nav-item">
+        <a class="nav-link" href="../account/"><i class="far fa-user"></i> Account</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<!-----------------------------------------------nav section------------------------------------------------>
+	<nav class="fixed-top navbar navbar-expand-lg nav">
+		<div class="row justify-content-center nav collapse navbar-collapse">
+			<div class="col-lg-5 nav-left">
+				<ul class="nav-menu">
+					<li class="nav-item"><a href="../../index.html#why">About</a></li>
+					<li class="nav-item"><a href="../features/">Features</a></li>
+					<li class="nav-item active">Shop</li>
+			</div>
+			<div class="col-lg-auto nav-logo"><input type="button" class="btn-logo" onclick="location.href='../../';"></div>
+				<div class="col-lg-5 nav-right">
+					<li><a href="../contact/">Contact</a></li>
+					<li class="nav-item"><a href="">Downlaod</a></li>
+					<li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         	<img src="../../img/flag/hk.svg" width="20px" height="20px"> 
+        </a>
+        <div class="dropdown-menu dropmen" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href=""><img src="../../img/flag/hk.svg" width="20px" height="20px"> HK(Eng)</a>
+          <a class="dropdown-item" href="../../zh/"><img src="../../img/flag/hk.svg" width="20px" height="20px"> 香港(繁中)</a>
+        </div>
+      </li>
+					<li class="nav-item"><a href="../account"><i class="far fa-user"></i></a></li>
+					</ul>
+			</div>
+	</div>
+		</nav>
+	<!--fake top (fixed body stick on top problem)------------------------------------------------------------------->
+	<nav class="navbar-expand-lg nav">
+		<div class="row justify-content-center"><div class="col-lg-5 nav-left"></div>
+		<div class = "col-lg-auto logo-center"></div>
+			<div class="col-lg-5 nav-right"></div>
+		</div>
+	</nav>
+	<!-----------------------------------------------------hero section-------------------------------------------------->
+	<div id="cart" class="container-fluid wow fadeIn">
+		<div class="container-fluid body-content"> 
+			<br>
+			<br>
+			<h1>Choose Your Plan</h1>
+			<br>
+			<div class="container">
+			<div class="row justify-content-center plans">
+				<div class="col-lg-9">
+					<h2>Plan</h2>
+					<br>
+					<div class="row">
+						<div class="col-lg-4 btn-cart" id="starter"><h2>Starter</h2>1 Device<br>Fast Connection<br>From HK$30</div>
+						<div class="col-lg-4 btn-cart" id="basic"><h2>Basic</h2>3 Devices<br>Very Fast Connection<br>From HK$40</div>
+						<div class="col-lg-4 btn-cart" id="pro"><h2>Pro</h2>3 Devices<br>Fastest Connection<br>From HK$50</div>
+					</div>
+					<br>
+					<br>
+					<br>
+					<h2>Payment</h2>
+					<br>
+					<div class="row justify-content-center">
+						<div class="col-lg-4 btn-cart" id="monthly"><h2>Monthly</h2><div id="m">HK$30</div></div>
+						<div class="col-lg-4 btn-cart" id="yearly"><h2>Yearly</h2><div id="y">HK$250</div><div id="dis">30%off</div></div>
+					</div>
+					<br><br><hr>
+					<div class="row justify-content-end">
+						<div class="col-lg-6 total">Total</div>
+						<div class="col-lg-6 total" id="total"></div>
+						<div class="col-lg-6 total btn-con"><a class= "btn-contin" id="btn-contin">Continue</a></div> 
+					</div>
+				</div>
+			</div>
+			</div>
+			<br><br><br><br>
+				</div>
+				</div>
+	
+	<footer class="page-footer">
+		<div class="container-fluid footer">
+			<br><br>
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="row">
+					<div class="col-lg-6 platform">
+						<i class="fab fa-apple plat"></i>  <i class="fab fa-android plat"></i>  <i class="fab fa-windows plat"></i>
+						</div>
+					<div class="col-lg-6 social">
+						<a><i class="fab fa-instagram"></i></a> 
+						<a><i class="fab fa-telegram-plane"></i></a>
+						<a><i class="fab fa-facebook"></i> </a>
+						<a><i class="fab fa-twitter"></i> </a>
+						<a><i class="fas fa-donate"></i></a>
+					</div>
+						</div>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Features</h5></b></li>
+						<li>VPN</li><li>Netflix VPN</li>
+						<li>Streaming VPN</li>
+						<li>Fast VPN</li>
+						<li>Secure VPN</li></ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Platforms</h5></b></li>
+						<li>VPN for iOS</li>
+						<li>VPN for Mac</li>
+						<li>VPN for Android</li>
+						<li>VPN for Windows</li>
+						<li>VPN for Router</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Legal</h5></b></li>
+						<li>Privacy</li>
+						<li>Term of Use</li>
+						<li><p></p></li>
+						<li><b><h5>Account</h5></b></li>
+						<li>Manage your account</li>
+						<li>Extend your account</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+					<li><b><h5>HKiersVPN</h5></b></li>
+					<li>About</li>
+					<li>Contact HKiersVPN</li>
+					<li>Join our team</li>
+					<li>Donate to us</li>	
+					</ul>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-8 copyright">
+					<br>
+					<hr>
+					<div class="row">
+					<div class="col-lg-6">
+					Copyright &copy; 2020 HKiersVPN .  All rights reserved
+						</div>
+					<div class="col-lg-6 right">Keeps you safe to find the objective truth undetectably.</div>
+						</div>
+				</div>
+			</div>
+			<br>
+		</div>
+	</footer>
+</body>
+</html>

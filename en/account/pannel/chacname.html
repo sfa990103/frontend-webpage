@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Settings-Account HKiersVPN</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+	<link href="../../../img/favicon.png" rel="icon">
+  <link href="../../../img/apple-touch-icon.png" rel="apple-touch-icon">	
+	<link href="../../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/56555089c8.js" crossorigin="anonymous"></script>
+	
+	<link href="../../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../../../lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../../../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../../../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../../../lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+	
+	<link href="../../../css/style.css" rel="stylesheet">
+	
+	<script src="../../../lib/jquery/jquery.min.js"></script>
+<script src="../../../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var ac = sessionStorage.getItem("hkiersvpn-ac");
+			var pw = sessionStorage.getItem("hkiersvpn-pw");
+			if(!ac && !pw){
+				location.replace("../");
+			}
+			$.post("../valid/valid.php", {
+				ac : ac,
+				pw : pw
+			}, function(data){
+    			if(data!="sucess"){
+					location.replace("../");
+				}
+  			});
+			$("#oacin").text(ac);
+			var flagx=0;
+			var flagy=0;
+			var flagz=0;
+			$("#ac").click(function(){
+					dealertinput("#ac");
+					$("#acau").html("<br>");
+					$("#acin").focus();
+				});
+			$("#acin").focus(function(){
+					dealertinput("#ac");
+					$("#acau").html("<br>");
+			});
+			$("#acin").focusout(function(){
+				if(!$("#acin").val()){
+					alertinput("#ac");
+					$("#acau").html("<font color='red'>&#9888;   New Account Name must not be empty! </font>");
+					flagx=0;
+				}
+				else if($("#acin").val()==ac){
+					alertinput("#ac");
+					$("#acau").html("<font color='red'>&#9888;   New Account Name must not be the same! </font>");
+					flagx=0;
+				}
+				else if(!checkcase("#acin")){
+					alertinput("#ac");
+					$("#acau").html("<font color='red'>&#9888;   Must include 8-16 uppercase & lowercase & special charaters! </font>");
+					flagx=0;
+				}
+				else{
+					flagx=1;
+				}
+				if($("#acin").val()!=$("#reacin").val()){
+					alertinput("#reac");
+					$("#reacau").html("<font color='red'>&#9888;   Account Name entered do not match! </font>");
+					flagy=0;
+				}
+				else{
+					flagy=1;
+				}
+			});
+			$("#reac").click(function(){
+					dealertinput("#reac");
+					$("#reacau").html("<br>");
+					$("#reacin").focus();
+				});
+			$("#reacin").focus(function(){
+					dealertinput("#reac");
+					$("#reacau").html("<br>");
+			});
+			$("#reacin").focusout(function(){
+				if(!$("#reacin").val()){
+					alertinput("#reac");
+					$("#reacau").html("<font color='red'>&#9888;   New Account Name must not be empty! </font>");
+					flagy=0;
+				}
+				else if($("#acin").val()!=$("#reacin").val()){
+					alertinput("#reac");
+					$("#reacau").html("<font color='red'>&#9888;   Account Name entered do not match! </font>");
+					flagy=0;
+				}
+				else{
+					flagy=1;
+				}
+			});
+			$("#pw").click(function(){
+					dealertinput("#pw");
+					$("#pwau").html("<br>");
+					$("#pwin").focus();
+				});
+			$("#pwin").focus(function(){
+					dealertinput("#pw");
+					$("#pwau").html("<br>");
+			});
+			$("#pwin").focusout(function(){
+				if(!$("#pwin").val()){
+					alertinput("#pw");
+					$("#pwau").html("<font color='red'>&#9888;   Password must not be empty! </font>");
+					flagy=0;
+				}
+				else{
+					flagy=1;
+				}
+			});
+			$("#btn-confirm").click(function(){
+				var newac=$("#acin").val();
+				if(flagx==1&&flagy==1&&flagz==1){
+					$.post("server/chacname.php", {
+						ac : ac,
+						newac : newac,
+						pw : pw
+					}, function(data){
+    					if(data="sucess"){
+						sessionStorage.setItem("hkiersvpn-ac", $("#acin").val());	
+						location.replace("settings.html");
+					}
+						else{
+							$("#pwau").html("<font color='red'>&#9888;   Password error! </font>");
+						}
+  				});
+				}
+			});	
+			function alertinput(div){
+					$(div).css({"background-color":"rgba(255,55,95,0.4)","border":"2px solid rgba(255,55,95,1.00)"});
+					$(div+"name").css("color","rgba(255,55,95,1.00)");
+				}
+			function dealertinput(div){
+					$(div).css({"background-color":"black","border":"1px solid rgb(58, 58, 60,1.00)","caret-color":"white","color":"white"});
+					$(div+"name").css("color","#86868b");
+				}
+			function checkcase(v){
+					var upperCase= new RegExp('[A-Z]');
+					var lowerCase= new RegExp('[a-z]');
+					var numbers = new RegExp('[0-9]');
+					var special = new RegExp("^[a-zA-Z0-9]+$");
+
+					if($(v).val().match(upperCase) && $(v).val().match(lowerCase) &&   $(v).val().match(numbers) && !$(v).val().match(special) && $(v).val().length > 7 && $(v).val().length < 17)  
+						{
+    						return true;
+						}
+					else
+					{
+    						return false;
+					}
+				}
+		});
+	</script>
+</head>
+
+<body>
+	<!-----------------------------------------------reponsive nav---------------------------------------------->
+	<nav class="navbar navbar-expand-lg navbar-light navres fixed-top">
+	<div class="container-fluid justify-content-center">
+	<div class="col-11 col-lg-11">
+  <a class="navbar-brand" href="#">&lt; Settings</a>
+	</div>
+	</div>	
+	</nav>
+	<nav class="navbar navbar-expand-lg navbar-light navres">
+	<div class="container-fluid justify-content-center">
+	<div class="col-11">
+  <a class="navbar-brand" href="#">&lt; Settings</a>
+	</div>
+	</div>		
+	</nav>
+	<div id="acdetail" class="container-fluid wow fadeIn">
+		<div class="container-fluid body-content">
+			<br>
+			<h1>Change Account Name</h1>
+			<div class="row justify-content-center">
+				<div class="col-lg-9 col-md-9 col-10"><hr></div>
+			</div>
+			<div class="container-fluid" id="details">
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="oac"><div class="name" id="oacname">Original Account Name</div><div class="input" id="oacin"> Error</div></div>
+							<div class="col-lg-10 col-10 aution" id="oacau"><br></div>
+				</div>
+			</div>	
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="ac"><div class="name" id="acname">New Account Name</div><input type="text" class="input" id="acin"></div>
+							<div class="col-lg-10 col-10 aution" id="acau"><br></div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="reac"><div class="name" id="reacname">Confirm New Account Name</div><input type="text" class="input" id="reacin"></div>
+							<div class="col-lg-10 col-10 aution" id="reacau"><br></div>
+				</div>
+			</div>
+				<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<div class="col-lg-12 col-12 wrapper" id="pw"><div class="name" id="pwname">Password</div><input type="password" class="input" id="pwin"></div>
+							<div class="col-lg-10 col-10 aution" id="pwau"><br></div>
+				</div>
+			</div>
+				<div class="row justify-content-center">
+				<div class="col-lg-4 col-10">
+					<a class="btn-confirm" id="btn-confirm">Confirm</a>
+				</div>
+			</div>
+			</div>
+		</div>	
+			<br><br><br><br><br><br><br><br><br><br>
+			</div>
+	<footer class="page-footer">
+		<div class="container-fluid footer">
+			<br><br>
+			<div class="row justify-content-center">
+				<div class="col-12 col-xs-4 col-lg-8">
+					<div class="row">
+					<div class="col-5 col-xs-3 col-lg-6 platform">
+						<i class="fab fa-apple plat"></i>  <i class="fab fa-android plat"></i>  <i class="fab fa-windows plat"></i>
+						</div>
+					<div class="col-5 col-xs-3 col-lg-6 social">
+						<a><i class="fab fa-instagram"></i></a> 
+						<a><i class="fab fa-telegram-plane"></i></a>
+						<a><i class="fab fa-facebook"></i> </a>
+						<a><i class="fab fa-twitter"></i> </a>
+						<a><i class="fas fa-donate"></i></a>
+					</div>
+						</div>
+					<hr>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Features</h5></b></li>
+						<li>VPN</li><li>Netflix VPN</li>
+						<li>Streaming VPN</li>
+						<li>Fast VPN</li>
+						<li>Secure VPN</li></ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Platforms</h5></b></li>
+						<li>VPN for iOS</li>
+						<li>VPN for Mac</li>
+						<li>VPN for Android</li>
+						<li>VPN for Windows</li>
+						<li>VPN for Router</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+						<li><b><h5>Legal</h5></b></li>
+						<li>Privacy</li>
+						<li>Term of Use</li>
+						<li><p></p></li>
+						<li><b><h5>Account</h5></b></li>
+						<li>Manage your account</li>
+						<li>Extend your account</li>
+					</ul>
+				</div>
+				<div class="col-lg-2">
+					<ul class="list-group">
+					<li><b><h5>HKiersVPN</h5></b></li>
+					<li>About</li>
+					<li>Contact HKiersVPN</li>
+					<li>Join our team</li>
+					<li>Donate to us</li>	
+					</ul>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-8 copyright">
+					<br>
+					<hr>
+					<div class="row">
+					<div class="col-lg-6">
+					Copyright &copy; 2020 HKiersVPN .  All rights reserved
+						</div>
+					<div class="col-lg-6 right">Keeps you safe to find the objective truth undetectably.</div>
+						</div>
+				</div>
+			</div>
+			<br>
+		</div>
+	</footer>
+	<nav class="navbar navbar-expand-lg fixed-bottom ac-bottom">
+	<div class="container-fluid justify-content-center">
+		<div class="col-12">
+		<div class="row">
+		<div class="col-4 bottomd active"><i class="fas fa-globe"></i><br>Countries</div>
+		<div class="col-4 bottomd"><a href="#"><i class="fas fa-wifi"></i><br>Quick Connect</a></div>
+		<div class="col-4 bottomd"><a href="#"><i class="fas fa-cog"></i><br>Settings</a></div>
+		</div>	
+		</div>	
+	</div>
+	</nav>
+	<nav class="navbar navbar-expand-lg ac-bottom">
+	<div class="container-fluid justify-content-center">
+		<div class="col-12">
+		<div class="row">
+			<div class="col-4 bottomd"><i class="fas fa-globe"></i><br>Countries</div>
+			<div class="col-4 bottomd"><i class="fas fa-wifi"></i><br>Quick Connect</div>
+			<div class="col-4 bottomd"><i class="fas fa-cog"></i><br>Settings</div>
+		</div>	
+		</div>	
+	</div>
+	</nav>
+</body>
+</html>
